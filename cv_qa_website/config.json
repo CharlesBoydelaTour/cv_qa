@@ -1,0 +1,15 @@
+{
+    "DATA": {
+        "RAW": "data/raw",
+        "CONTEXT": "data/raw/context.csv"
+    },
+    "MONGODB": {
+        "DB_NAME": "cosmosdbcvqa",
+        "COLLECTION_NAME": "testcollection",
+        "INDEX_NAME": "testindex"
+    },
+    "AZURE_VS": {
+        "VS_ADDRESS": "https://vectorsearchcvqa2.search.windows.net",
+        "INDEX_NAME": "cosmosdb-index"
+    }
+}

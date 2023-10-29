@@ -1,0 +1,377 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Charles Boy de la Tour - Online Curriculum Vitae">
+
+    <!-- Title -->
+    <title>Charles Boy de la Tour - CV</title>
+
+    <!-- Stylesheets and Scripts -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body class="bg">
+    <div id="background"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg">
+        <a class="navbar-brand" href="#">Charles Boy de la Tour</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#chatbot">Chatbot</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#education">Education</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#experience">Professional Experiences</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#languages">Competences</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#associative">Associative Commitment</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header with Profile Picture and Contact Information -->
+    <header class="text-center py-5">
+        <img src="{% static 'img/picofme.png' %}" alt="Charles Boy de la Tour"
+            class="profile-picture mb-3 custom-profile-pic">
+
+        <h1 class="mt-2">Charles Boy de la Tour</h1>
+        <div class="d-flex justify-content-center mt-3">
+            <a href="mailto:charles.boydelatour@gmail.com" class="mx-2"><i class="fas fa-envelope icone"></i>
+                charles.boydelatour@gmail.com</a>
+            <a href="https://www.linkedin.com/in/charles-boy-de-la-tour" target="_blank" class="mx-2"><i
+                    class="fab fa-linkedin icone"></i> charles-boy-de-la-tour</a>
+            <a href="https://github.com/CharlesBoydelaTour" target="_blank" class="mx-2"><i
+                    class="fab fa-github icone"></i>
+                CharlesBoydelaTour</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+
+        <!-- Chatbot Section -->
+        <section id="chatbot" class="mb-5 py-4">
+            <h2 class="text-center mb-4">Chat with my resume Chatbot</h2>
+            <p class="text-center">You can ask the chatbot questions about my resume. It will answer to you in real
+                time thanks to the GPT3.5 model and Azure Cognitive Search.</p>
+            <div class="card p-3">
+                <div id="messages" style="height: 300px; overflow-y: scroll;">
+                    <div class="message bot-message">
+                        <p>Bot: Hi there! How can I help you?</p>
+                    </div>
+                </div>
+                <input id="inputMessage" class="form-control mb-2" type="text" maxlength="100"
+                    placeholder="Write your question here...">
+                <button id="sendMessageButton" onclick="sendMessage()" class="btn btn-primary btn-main">
+                    {% csrf_token %}
+                    Send question</button>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="mb-5 py-4 timeline">
+            <h2 class="text-center mb-4">Education</h2>
+            <!-- CENTRALESUPELEC Card -->
+            <div class="timeline-item">
+                <div class="date-container">
+                    <div class="date-point"></div>
+                    <p class="card-date">2021 - 2022</p>
+                </div>
+                <div class="card p-3 mt-3">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="header">
+                                <h5 class="card-title">CENTRALESUPELEC | PARIS-SACLAY UNIVERSITY</h5>
+                            </div>
+                            <p class="card-text">MSc in Artificial Intelligence</p>
+                            <p class="card-text project">Project: Automatic detection of metastases from
+                                histopathological
+                                images (Python)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ESSEC BUSINESS SCHOOL Card -->
+            <div class="timeline-item">
+                <div class="date-container">
+                    <div class="date-point"></div>
+                    <p class="card-date">2018 - 2021</p>
+                </div>
+                <div class="card p-3 mt-3">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="header">
+                                <h5 class="card-title">ESSEC BUSINESS SCHOOL</h5>
+                            </div>
+                            <p class="card-text">Master in Management - Grande Ecole Program</p>
+                            <p class="card-text">Accenture Business Analytics Chair</p>
+                            <p class="card-text project">Project: interactive map for TF1 Publicité in their transition
+                                to
+                                segmented advertising (R)</p>
+                            <h5 class="card-title">ESM SAINT-CYR – Double degree</h5>
+                            <p class="card-text">One-year commitment to the rank of Aspirant as part of the ESSEC -
+                                Saint-Cyr double degree.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- UNIVERSITY OF LEEDS Card -->
+            <div class="timeline-item">
+                <div class="date-container">
+                    <div class="date-point"></div>
+                    <p class="card-date">2015 - 2018</p>
+                </div>
+                <div class="card p-3 mt-3">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="header">
+                                <h5 class="card-title">UNIVERSITY OF LEEDS</h5>
+                            </div>
+                            <p class="card-text">Bachelor of Mechanical Engineering – Specialisation in Robotics and
+                                Artificial Intelligence</p>
+                            <p class="card-text project">Project: Soft robotic helmet to treat craniosynostosis
+                                (LabView,
+                                Matlab)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experiences Section -->
+        <section id="experience" class="mb-5 py-4 timeline">
+            <h2 class="text-center mb-4">Professional Experiences</h2>
+            <div class="timeline-item">
+                <div class="date-container">
+                    <div class="date-point"></div>
+                    <p class="card-date">2023 - (Today)</p>
+                </div>
+                <div class="card p-3 mt-3">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <h5 class="card-title">CAPGEMINI INVENT – Data Program</h5>
+                            <p class="card-text">Consulting</p>
+                            <p class="card-text"> 18-month program to develop my skills in data science, data
+                                engineering and consulting </p>
+                            <ul>
+                                <li>Monitoring and tracking non-co2 effects in the aeronautics sector</li>
+                                <li>Anomaly detection and data quality in the public sector (Python, Tableau)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="date-container">
+                    <div class="date-point"></div>
+                    <p class="card-date">2022</p>
+                </div>
+                <div class="card p-3 mt-3">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <h5 class="card-title">THALES RESEARCH AND TECHNOLOGIES – AI Research Engineer Intern</h5>
+                            <p class="card-text">Aerospace, Defence, Security, Transport</p>
+                            <ul>
+                                <li>Development of a distributed task allocation algorithm in a dynamic multi-agent
+                                    system
+                                    (Python, Java, Linux)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="date-container">
+                    <div class="date-point"></div>
+                    <p class="card-date">2019</p>
+                </div>
+                <div class="card p-3 mt-3">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <h5 class="card-title">EKIMETRICS - Consultant / Data Scientist Intern</h5>
+                            <p class="card-text">Consulting</p>
+                            <ul>
+                                <li>Analysis of results and development of a marketing strategy</li>
+                                <li>Development of an interactive dashboard (PowerBI)</li>
+                                <li>Elaboration of a training course on algorithmic biases</li>
+                                <li>Research on survival algorithms applied to predictive maintenance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="date-container">
+                    <div class="date-point"></div>
+                    <p class="card-date">2017</p>
+                </div>
+                <div class="card p-3 mt-3">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <h5 class="card-title">ALGECO SCOTSMAN - Intern</h5>
+                            <p class="card-text">Leader in modular construction</p>
+                            <ul>
+                                <li>Audit EHS (environment, health and safety) and Lean Management</li>
+                                <li>Supervision of a subcontractor unit</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Languages and Other Competences Section -->
+        <section id="languages" class="mb-5 py-4">
+            <h2 class="text-center mb-4">Languages and Other Competences</h2>
+            <div class="card p-3">
+                <div class="card-body">
+                    <div class="card-content">
+                        <h5 class="card-title">Languages</h5>
+                        <ul>
+                            <li>French (native)</li>
+                            <li>English (bilingual, TOEIC: 970/990)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-3 mt-3">
+                <div class="card-body">
+                    <div class="card-content">
+                        <h5 class="card-title">Technical Skills</h5>
+                        <p>Python, Java, MatLab, R, SQL, Hadoop, Spark, Git, PowerBI</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-3 mt-3">
+                <div class="card-body">
+                    <div class="card-content">
+                        <h5 class="card-title">Certifications</h5>
+                        <ul>
+                            <li>Microsoft Azure Fundamentals (AZ-900)</li>
+                            <li>CS50’s (HarvardX)</li>
+                            <li>Mathematics for Machine Learning (Imperial College)</li>
+                            <li>Machine Learning (Stanford University)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-3 mt-3">
+                <div class="card-body">
+                    <div class="card-content">
+                        <h5 class="card-title">Other Skills</h5>
+                        <ul>
+                            <li>First aid in team level 1 (PSE1)</li>
+                            <li>PADI Professional Diver (DiveMaster PADI)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Associative Commitment Section -->
+        <section id="associative" class="mb-5 py-4 timeline">
+            <h2 class="text-center mb-4">Associative Commitment</h2>
+            <div class="timeline-item">
+                <div class="date-container">
+                    <div class="date-point"></div>
+                    <p class="card-date">2019 - 2020</p>
+                </div>
+                <div class="card p-3">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <h5 class="card-title">PLONG’ESSEC - ESSEC scuba diving association</h5>
+                            <p class="card-text">Co-foundation and presidency of a student association dedicated to
+                                scuba
+                                diving and the preservation of marine biology.</p>
+                            <p class="card-text">Prospecting for partners, drafting of statutes, organisation of
+                                training
+                                courses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="date-container">
+                    <div class="date-point"></div>
+                    <p class="card-date">2018 - 2021</p>
+                </div>
+                <div class="card p-3 mt-3">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <h5 class="card-title">NOISE ESSEC - New Observatory for Social and Environmental Innovation
+                            </h5>
+                            <p class="card-text">Organisation of climate conferences, Micro-credit fundraising
+                                (Challenge
+                                The Rise)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Footer -->
+        <footer class="text-center py-4 mt-5">
+            <p><a href="{% url 'terms_and_policies' %}">Terms & Policies</a></p>
+            <p>&copy; 2023 Charles Boy de la Tour</p>
+        </footer>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- Cookie Consent -->
+        <script>
+            window.addEventListener("load", function () {
+                window.cookieconsent.initialise({
+                    "palette": {
+                        "popup": {
+                            "background": "#efefef",
+                            "text": "#404040"
+                        },
+                        "button": {
+                            "background": "#8ec760",
+                            "text": "#ffffff"
+                        }
+                    },
+                    "theme": "classic",
+                    "position": "bottom-right",
+                    "content": {
+                        "message": "This website uses cookies to ensure you get the best experience on this website. By continuing your visit to this site, you consent to the use of cookies. ",
+                        "dismiss": "Got it!",
+                        "link": "Learn more",
+                        "href": "{% url 'terms_and_policies' %}"
+                    }
+                })
+            });
+        </script>
+</body>
+
+</html>

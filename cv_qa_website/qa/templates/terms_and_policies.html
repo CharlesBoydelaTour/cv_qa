@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charles Boy de la Tour - CV</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=RobotoFlex:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <div id="background"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">Charles Boy de la Tour</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <header class="text-center py-5">
+        <h1 class="mt-2">Charles Boy de la Tour</h1>
+        <div class="d-flex justify-content-center mt-3">
+            <a href="mailto:charles.boydelatour@gmail.com" class="mx-2"><i class="fas fa-envelope"></i>
+                charles.boydelatour@gmail.com</a>
+            <a href="https://www.linkedin.com/in/charles-boy-de-la-tour" target="_blank" class="mx-2"><i
+                    class="fab fa-linkedin"></i> charles-boy-de-la-tour</a>
+            <a href="https://github.com/CharlesBoydelaTour" target="_blank" class="mx-2"><i class="fab fa-github"></i>
+                CharlesBoydelaTour</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container mt-4">
+            <section class="terms-and-policies">
+                <h1>Terms and Policies</h1>
+
+                <h2>1. Personal Information We Collect</h2>
+                <p>We collect personal information relating to you as follows:</p>
+                <ul>
+                    <li><strong>Messages Input in Chat:</strong> When you use our chat service, we collect the messages
+                        you input which may be stored and analyzed to improve the performance of our chatbot. These
+                        messages
+                        may be stored on cloud services.</li>
+                    <li><strong>Cookies:</strong> We use cookies to operate and administer our services and improve your
+                        experience. A "cookie" is a piece of information sent to your browser by a website you visit.
+                    </li>
+                    <li><strong>Log Data:</strong> Information that your browser automatically sends when you use our
+                        services. This includes your Internet Protocol address, browser type and settings, the date and
+                        time
+                        of your request, and how you interact with our website.</li>
+                    <li><strong>Device Information:</strong> Includes the name of the device, operating system, device
+                        identifiers, and browser you are using.</li>
+                </ul>
+
+                <h2>2. How We Use Personal Information</h2>
+                <p>We may use personal information for the following purposes:</p>
+                <ul>
+                    <li>To provide, administer, maintain, and analyze the services.</li>
+                    <li>To improve our services and conduct research.</li>
+                    <li>To prevent fraud, criminal activity, or misuses of our services.</li>
+                </ul>
+
+                <h2>3. Disclosure of Personal Information</h2>
+                <p>In certain circumstances, we may provide your personal information to third parties without further
+                    notice to you, unless required by the law:</p>
+                <ul>
+                    <li><strong>Vendors and Service Providers:</strong> We may provide personal information to cloud
+                        services, and other information
+                        technology services providers.</li>
+                    <li><strong>Legal Requirements:</strong> We may share your personal information with government
+                        authorities or other third parties if required to do so by law.</li>
+                </ul>
+
+                <h2>4. Your Rights</h2>
+                <p>Depending on your location, you may have certain rights in relation to your personal information.
+                    These
+                    may include the right to access, delete, or rectify your personal information. You may also have the
+                    right to withdraw your consent for us to process your personal information.</p>
+
+                <h2>5. Links to Other Websites</h2>
+                <p>Our service may contain links to other websites not operated or controlled by us. The information
+                    that
+                    you share with third-party sites will be governed by their specific privacy policies and terms of
+                    service.</p>
+
+                <h2>6. Changes to the Privacy Policy</h2>
+                <p>We may update this privacy policy from time to time. When we do, we will post an updated version on
+                    this
+                    page.</p>
+
+                <h2>7. How to Contact Us</h2>
+                <p>Please contact us if you have any questions or concerns not already addressed in this privacy policy.
+                    You
+                    can contact us at charles.boydelatour@gmail.com.</p>
+            </section>
+        </div>
+    </main>
+    <footer class="text-center py-4 mt-5">
+        <p><a href="{% url 'terms_and_policies' %}">Terms & Policies</a></p>
+        <p>&copy; 2023 Charles Boy de la Tour</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
