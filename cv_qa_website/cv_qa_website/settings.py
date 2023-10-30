@@ -22,9 +22,16 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_KEY")
-CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS").split(" ")
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+if "CODESPACE_NAME" in os.environ:
+    CSRF_TRUSTED_ORIGINS = [
+        f'https://{os.getenv("CODESPACE_NAME")}-8000.{os.getenv("GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN")}'
+    ]
+
+# CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS").split(" ")
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 ALLOWED_HOSTS = (
     [os.environ["WEBSITE_HOSTNAME"]] if "WEBSITE_HOSTNAME" in os.environ else []
 )
@@ -148,7 +155,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.getenv("REDIS_URL"),
+        "LOCATION": os.getenv("AZURE_REDIS_CONNECTIONSTRING"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "PASSWORD": os.getenv("REDIS_PSW"),
