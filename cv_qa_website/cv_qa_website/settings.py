@@ -24,10 +24,9 @@ load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-if os.getenv("CSRF_TRUSTED_ORIGINS"):
-    CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS").split(",")
-    CSRF_COOKIE_SECURE = True
-    CSRF_COOKIE_SAMESITE = "None"
+
+CSRF_TRUSTED_ORIGINS = ["https://webappcvqa.azurewebsites.net", "https://*.127.0.0.1"]
+
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
