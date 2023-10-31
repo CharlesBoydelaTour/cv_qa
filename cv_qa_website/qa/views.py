@@ -9,8 +9,10 @@ from .utils.bot_utils import (
 )
 from django.views import View
 from .models import Message
+from django.views.decorators.csrf import csrf_protect
 
 
+@csrf_protect
 def home_view(request):
     return render(request, "index.html")
 
