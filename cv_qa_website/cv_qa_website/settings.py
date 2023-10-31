@@ -34,9 +34,7 @@ elif os.getenv("CSRF_TRUSTED_ORIGINS"):
 
 DEBUG = os.environ.get("DEBUG", "False").lower() in ["true", "t", "1"]
 
-ALLOWED_HOSTS = (
-    [os.environ["WEBSITE_HOSTNAME"]] if "WEBSITE_HOSTNAME" in os.environ else []
-)
+ALLOWED_HOSTS = [os.environ["WEBSITE_HOSTNAME"], os.environ["HTTP_HOST"]]
 
 SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT", "0").lower() in [
     "true",
@@ -141,7 +139,7 @@ LOGGING = {
         },
         "logfile": {
             "class": "logging.handlers.WatchedFileHandler",
-            "filename": "D:\home\site\wwwroot\logs.log",
+            "filename": "error.log",
         },
     },
     "loggers": {
