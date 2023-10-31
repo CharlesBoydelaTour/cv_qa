@@ -24,13 +24,12 @@ load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-if "CODESPACE_NAME" in os.environ:
-    CSRF_TRUSTED_ORIGINS = [
-        f'https://{os.getenv("CODESPACE_NAME")}-8000.{os.getenv("GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN")}'
-    ]
-elif os.getenv("CSRF_TRUSTED_ORIGINS"):
-    CSRF_TRUSTED_ORIGINS = [os.getenv("CSRF_TRUSTED_ORIGINS")]
+if os.getenv("CSRF_TRUSTED_ORIGINS"):
+    CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS").split(",")
+    CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_SAMESITE = "None"
 # SECURITY WARNING: don't run with debug turned on in production!
+
 
 DEBUG = os.environ.get("DEBUG", "False").lower() in ["true", "t", "1"]
 
