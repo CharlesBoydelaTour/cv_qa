@@ -4,7 +4,7 @@
 
 This webapp is a chatbot application hosted on Azure that answers questions about the owner's resume. The webapp uses Poetry for dependency management and Django as the web framework.
 
-The website is accessible at : [charlesboydelatour.com]() 
+The website is accessible at : [charlesboydelatour.com](charlesboydelatour.com)
 
 ## Getting Started
 
