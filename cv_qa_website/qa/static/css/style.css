@@ -124,11 +124,6 @@ section {
     font-size: 12px;
   }
 
-  .bot-message,
-  .user-message {
-    font-size: 12px;
-  }
-
   .date-container {
     position: static;
   }
