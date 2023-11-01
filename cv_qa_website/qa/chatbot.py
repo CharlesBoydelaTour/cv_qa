@@ -106,6 +106,6 @@ class ChatBotProcess:
 
 
 if __name__ == "__main__":
-    # main_process(Configuration("config.json"))
-    chatbot = ChatBotProcess(Configuration("config.json"), ChatOpenAIManagement)
-    print(chatbot.execute_answer("Why did Charles went to ESSEC?"))
+    main_process(Configuration("config.json"))
+    # chatbot = ChatBotProcess(Configuration("config.json"), ChatOpenAIManagement)
+    # print(chatbot.execute_answer("Why did Charles went to ESSEC?"))
