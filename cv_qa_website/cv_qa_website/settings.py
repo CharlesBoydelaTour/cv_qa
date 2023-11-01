@@ -39,6 +39,7 @@ ALLOWED_HOSTS = [
     os.environ["WEBSITE_HOSTNAME"],
     os.environ["HTTP_HOST"],
     "https://charlesboydelatour.com",
+    "127.0.0.1",
 ]
 
 SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT", "0").lower() in [
