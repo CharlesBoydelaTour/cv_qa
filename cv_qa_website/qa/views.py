@@ -12,6 +12,8 @@ from django.views import View
 from .models import Message
 from django.views.decorators.csrf import csrf_protect
 
+import json
+
 
 @csrf_protect
 def home_view(request):
@@ -22,17 +24,21 @@ def terms_and_policies_view(request):
     return render(request, "terms_and_policies.html")
 
 
+class ChatBotSingleton:
+    _instance = None
+
+    @staticmethod
+    def getInstance():
+        if ChatBotSingleton._instance is None:
+            ChatBotSingleton._instance = ChatBotProcess(
+                Configuration("config.json"),
+                ChatOpenAIManagement,
+            )
+        return ChatBotSingleton._instance
+
+
 class ChatEndpointView(View):
-    def __init__(self, **kwargs: Any) -> None:
-        super().__init__(**kwargs)
-        self.chatbot = ChatBotProcess(
-            Configuration("config.json"),
-            ChatOpenAIManagement,
-        )
-
     def post(self, request, *args, **kwargs):
-        import json
-
         data = json.loads(request.body.decode("utf-8"))
         message = data.get("message")
         # check that mesage is smaller than 255 characters
@@ -42,7 +48,8 @@ class ChatEndpointView(View):
         if not message:
             response = "Please enter a question."
         else:
-            response = self.chatbot.execute_answer(message)
+            chatbot = ChatBotSingleton.getInstance()
+            response = chatbot.execute_answer(message)
 
         to_save = Message(content=message, answer=response)
         to_save.save()
