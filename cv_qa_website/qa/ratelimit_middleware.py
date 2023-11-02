@@ -23,7 +23,8 @@ class RateLimitMiddleware:
                 )
             else:
                 cache.set(
-                    key, count + 1, 10
+                    key, count + 1, 60
                 )  # Increment count and set 1-minute expiration
         response = self.get_response(request)
+        response["Cache-Control"] = "no-cache, no-store, must-revalidate"
         return response
