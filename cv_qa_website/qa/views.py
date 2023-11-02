@@ -1,5 +1,6 @@
 # views.py
 
+from typing import Any
 from django.shortcuts import render
 from django.http import JsonResponse
 from .chatbot import ChatBotProcess
@@ -22,6 +23,13 @@ def terms_and_policies_view(request):
 
 
 class ChatEndpointView(View):
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
+        self.chatbot = ChatBotProcess(
+            Configuration("config.json"),
+            ChatOpenAIManagement,
+        )
+
     def post(self, request, *args, **kwargs):
         import json
 
@@ -34,11 +42,7 @@ class ChatEndpointView(View):
         if not message:
             response = "Please enter a question."
         else:
-            chatbot = ChatBotProcess(
-                Configuration("config.json"),
-                ChatOpenAIManagement,
-            )
-            response = chatbot.execute_answer(message)
+            response = self.chatbot.execute_answer(message)
 
         to_save = Message(content=message, answer=response)
         to_save.save()

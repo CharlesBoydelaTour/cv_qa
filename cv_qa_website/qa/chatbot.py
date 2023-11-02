@@ -106,6 +106,10 @@ class ChatBotProcess:
 
 
 if __name__ == "__main__":
-    main_process(Configuration("config.json"))
+    # main_process(Configuration("config.json"))
     chatbot = ChatBotProcess(Configuration("config.json"), ChatOpenAIManagement)
-    print(chatbot.execute_answer("What is Charles doing at Capgemini?"))
+    inp = input("Ask a question: ")
+    while inp != "exit":
+        print(chatbot.execute_answer(inp))
+        print(chatbot.memory)
+        inp = input("Ask a question: ")
