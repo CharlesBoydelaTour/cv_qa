@@ -37,7 +37,6 @@ class ChatBotSingleton:
         return ChatBotSingleton._instance
 
 
-@csrf_protect
 class ChatEndpointView(View):
     def post(self, request, *args, **kwargs):
         data = json.loads(request.body.decode("utf-8"))
