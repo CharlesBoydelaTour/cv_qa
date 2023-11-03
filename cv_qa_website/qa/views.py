@@ -12,7 +12,8 @@ from django.views import View
 from .models import Message
 from django.views.decorators.csrf import csrf_protect
 import json
-import pickle
+from django.contrib.sessions.models import Session
+from django.contrib.sessions.backends.base import SessionBase
 
 
 @csrf_protect
@@ -26,6 +27,7 @@ def terms_and_policies_view(request):
 
 class ChatEndpointView(View):
     def post(self, request, *args, **kwargs):
+        session = SessionBase(request)
         data = json.loads(request.body.decode("utf-8"))
         message = data.get("message")
         # check that mesage is smaller than 255 characters
@@ -35,15 +37,13 @@ class ChatEndpointView(View):
         if not message:
             response = "Please enter a question."
         else:
-            chatbot_serialized = request.session.get("chatbot")
-            if not chatbot_serialized:
+            chatbot = session.get("chatbot")
+            if not chatbot:
                 config = Configuration("config.json")
                 chatbot = ChatBotProcess(config, ChatOpenAIManagement)
-            else:
-                chatbot = pickle.loads(chatbot_serialized)
             response = chatbot.execute_answer(message)
-            request.session["chatbot"] = pickle.dumps(chatbot)
-
+            request.session["chatbot"] = chatbot
+            session.save()
         to_save = Message(content=message, answer=response)
         to_save.save()
 
