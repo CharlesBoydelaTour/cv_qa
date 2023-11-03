@@ -204,3 +204,4 @@ CACHES = {
 
 SESSION_ENGINE = "django_redis.sessions.RedisSessionEngine"
 SESSION_COOKIE_AGE = 300
+# the session cookie will expire after 5 minutes of inactivity
