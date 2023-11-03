@@ -27,7 +27,7 @@ def terms_and_policies_view(request):
 
 class ChatEndpointView(View):
     def post(self, request, *args, **kwargs):
-        session = SessionBase(request.session.session_key)
+        session = request.session
         data = json.loads(request.body.decode("utf-8"))
         message = data.get("message")
         # check that mesage is smaller than 255 characters
