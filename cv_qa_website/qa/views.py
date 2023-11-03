@@ -24,19 +24,6 @@ def terms_and_policies_view(request):
     return render(request, "terms_and_policies.html")
 
 
-class ChatBotSingleton:
-    _instance = None
-
-    @staticmethod
-    def getInstance():
-        if ChatBotSingleton._instance is None:
-            ChatBotSingleton._instance = ChatBotProcess(
-                Configuration("config.json"),
-                ChatOpenAIManagement,
-            )
-        return ChatBotSingleton._instance
-
-
 class ChatEndpointView(View):
     def post(self, request, *args, **kwargs):
         data = json.loads(request.body.decode("utf-8"))
@@ -48,7 +35,11 @@ class ChatEndpointView(View):
         if not message:
             response = "Please enter a question."
         else:
-            chatbot = ChatBotSingleton.getInstance()
+            chatbot = request.session.get("chatbot")
+            if not chatbot:
+                config = Configuration("config.json")
+                chatbot = ChatBotProcess(config, ChatOpenAIManagement)
+                request.session["chatbot"] = chatbot
             response = chatbot.execute_answer(message)
 
         to_save = Message(content=message, answer=response)

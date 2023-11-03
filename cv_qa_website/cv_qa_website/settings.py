@@ -75,6 +75,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware"
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -198,3 +199,7 @@ CACHES = {
         },
     }
 }
+
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_COOKIE_AGE = 300
