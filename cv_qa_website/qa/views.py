@@ -11,8 +11,8 @@ from .utils.bot_utils import (
 from django.views import View
 from .models import Message
 from django.views.decorators.csrf import csrf_protect
-
 import json
+import pickle
 
 
 @csrf_protect
@@ -35,12 +35,14 @@ class ChatEndpointView(View):
         if not message:
             response = "Please enter a question."
         else:
-            chatbot = request.session.get("chatbot")
-            if not chatbot:
+            chatbot_serialized = request.session.get("chatbot")
+            if not chatbot_serialized:
                 config = Configuration("config.json")
                 chatbot = ChatBotProcess(config, ChatOpenAIManagement)
-                request.session["chatbot"] = chatbot
+            else:
+                chatbot = pickle.loads(chatbot_serialized)
             response = chatbot.execute_answer(message)
+            request.session["chatbot"] = pickle.dumps(chatbot)
 
         to_save = Message(content=message, answer=response)
         to_save.save()

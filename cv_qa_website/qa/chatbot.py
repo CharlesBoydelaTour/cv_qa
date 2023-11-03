@@ -6,6 +6,8 @@ from langchain.prompts.chat import (
     HumanMessagePromptTemplate,
     SystemMessagePromptTemplate,
 )
+from langchain.memory import ChatMessageHistory
+from langchain.schema.messages import BaseMessage
 
 # pylint: disable=import-error
 from .utils.bot_utils import (
@@ -14,7 +16,7 @@ from .utils.bot_utils import (
     azure_search_init,
     load_embedding,
 )
-
+from typing import Dict, Any
 from .utils.callbacks import ThoughtsCallbackHandler
 from .utils.process_embedding import main_process
 
@@ -36,11 +38,12 @@ class ChatBotProcess:
         - In addition to his academic and professional achievements, Charles has been involved in various associative commitments, including co-founding and presiding over PLONG’ESSEC, a student association dedicated to scuba diving and the preservation of marine biology.
 
         When users ask questions about Charles' resume, you should refer to the provided context to craft your responses. Follow these guidelines:
-        1. Only use relevant information from the context to answer the user's question.
-        2. Reformulate the context to create a concise and suitable response.
+        1. Only use relevant information from the context and chat history to answer the user's question.
+        2. Reformulate the context to create a suitable response as concise as possible.
         3. Do not fabricate answers. If you don't have the information needed, simply state that you don't know.
         4. Limit your responses to questions about Charles' resume.
         5. Use third-person pronouns (e.g., "Charles" or "his") instead of second-person pronouns ("you" or "your") or first person pronouns ("I" or "my").
+        6. Answer by default in English. If the user asks a question in an other language, you can answer in that language.
         Please keep in mind the above instructions while assisting users with their inquiries about Charles' resume.
         ----------------
         {context}""",
@@ -107,9 +110,14 @@ class ChatBotProcess:
 
 if __name__ == "__main__":
     # main_process(Configuration("config.json"))
-    chatbot = ChatBotProcess(Configuration("config.json"), ChatOpenAIManagement)
+    import pickle
+
     inp = input("Ask a question: ")
+    chatbot = ChatBotProcess(Configuration("config.json"), ChatOpenAIManagement)
+    serialized = pickle.dumps(chatbot)
     while inp != "exit":
+        chatbot = pickle.loads(serialized)
         print(chatbot.execute_answer(inp))
         print(chatbot.memory)
+        chatbot = pickle.dumps(chatbot)
         inp = input("Ask a question: ")
