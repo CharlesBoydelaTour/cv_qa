@@ -40,6 +40,8 @@ ALLOWED_HOSTS = [
     os.environ["HTTP_HOST"],
     "https://charlesboydelatour.com",
     "127.0.0.1",
+    "0.0.0.0",  # For Docker
+    "localhost",
 ]
 
 SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT", "0").lower() in [
@@ -110,7 +112,7 @@ DATABASES = {
         "HOST": os.environ.get("DBHOST"),
         "USER": os.environ.get("DBUSER"),
         "PASSWORD": os.environ.get("DBPASS"),
-        "OPTIONS": {"sslmode": "require"},
+        "OPTIONS": {"sslmode": os.environ.get("DB_SSLMODE", "require")},
     }
 }
 
@@ -195,7 +197,7 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "PASSWORD": os.getenv("REDIS_PSW"),
-            "SSL": True,
+            "SSL": os.getenv("REDIS_SSL", "True").lower() in ["true", "t", "1"],
         },
     }
 }

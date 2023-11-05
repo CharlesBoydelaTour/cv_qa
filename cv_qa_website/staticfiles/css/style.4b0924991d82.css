@@ -1,0 +1,236 @@
+/* Import Poppins font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+/* Use Poppins font for all text */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+button {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Use neon blue as the main color */
+:root {
+  --main-color: #7DD4F2;
+  --back-color: #eaedf1;
+}
+
+
+/* Change background color of #background div */
+.bg {
+  background-color: var(--back-color);
+
+}
+
+
+/* Custom profile picture styles */
+.custom-profile-pic {
+  width: 250px;
+  height: 250px;
+}
+
+/* Make profile picture smaller on smaller screens */
+@media (max-width: 768px) {
+  .custom-profile-pic {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Use accent colors for text and other elements */
+h1,
+h2,
+h3 {
+  color: #3C4856;
+  /* Ultra violet */
+}
+
+a {
+  color: #30837B;
+  /* Zaffre */
+}
+
+/* Add background color for better readability */
+
+/* Add spacing between sections */
+section {
+  margin-bottom: 30px;
+}
+
+/* Ensure website is responsive */
+@media (max-width: 768px) {
+  header {
+    text-align: center;
+  }
+}
+
+/* Ensure text is readable on all devices */
+.btn-main {
+  font-size: 16px;
+  background-color: #3C4856;
+  border-color: #3C4856;
+}
+
+.bot-message {
+  color: #4a90e2;
+  /* Light blue color for bot messages */
+  background-color: #e6f3ff;
+  /* Light blue background color for bot messages */
+  border-radius: 20px;
+  /* Rounded corners for bot messages */
+  padding: 5px;
+  /* Add some padding to the bot messages */
+  margin-bottom: 5px;
+  /* Add margin to the bottom of the bot messages */
+  text-indent: 1%;
+}
+
+.user-message {
+  color: #008A5D;
+  /* Zaffre color for user messages */
+  background-color: #e6fff3;
+  /* Light green background color for user messages */
+  border-radius: 20px;
+  /* Rounded corners for user messages */
+  padding: 5px;
+  /* Add some padding to the user messages */
+  margin-bottom: 5px;
+  /* Add margin to the bottom of the user messages */
+  text-indent: 1%;
+}
+
+
+@media (max-width: 768px) {
+
+  .mx-2,
+  .mt-2 {
+    font-size: 0;
+    /* Hide text */
+  }
+
+  .icone {
+    font-size: 1.5rem;
+    /* Show icons */
+  }
+
+  body {
+    font-size: 12px;
+  }
+
+  .date-container {
+    position: static;
+  }
+
+
+  .card-date {
+    position: absolute;
+    right: 80;
+    margin: -1rem;
+  }
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 2rem;
+  /* Add margin to bottom of each element */
+}
+
+
+@media only screen and (min-width: 768px) {
+
+  header a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fa-envelope,
+  .fa-linkedin,
+  .fa-github {
+    margin-right: 5px;
+  }
+
+  header a span {
+    display: none;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+  }
+
+  /* Timeline styles */
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #3C4856;
+  }
+
+  .timeline-item {
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -129px;
+    width: 20px;
+    height: 20px;
+    background-color: #3C4856;
+    border: 3px solid #3C4856;
+    border-radius: 50%;
+    top: 10px;
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Timeline Section */
+  .timeline {
+    position: relative;
+    padding-left: 120px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  /* Date Container */
+  .date-container {
+    position: absolute;
+    left: -110px;
+    text-align: left;
+    top: -40px;
+    z-index: 1;
+  }
+
+
+  .card-date {
+    font-size: 1em;
+    color: #3C4856;
+    margin-top: 15px;
+  }
+
+  /* Other styles */
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 2;
+  }
+
+}

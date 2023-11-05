@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${DBNAME}
+      POSTGRES_USER: ${DBUSER}
+      POSTGRES_PASSWORD: ${DBPASS}
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: "redis:alpine"
+    command: redis-server --requirepass ${REDIS_PWD}
+
+  web:
+    build: .
+    command: gunicorn cv_qa_website.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/code
+      - static_volume:/code/staticfiles
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      DBHOST: db
+      REDIS_PSW: ${REDIS_PWD}
+      SECRET_KEY: ${SECRET_KEY}
+      DEBUG: ${DEBUG}
+      # Add other environment variables as needed
+      API_KEY: ${API_KEY}
+      MANGO_CONNECTION: ${MANGO_CONNECTION}
+      VECTOR_STORE_PSW: ${VECTOR_STORE_PSW}
+      AZURE_REDIS_CONNECTIONSTRING: ${AZURE_REDIS_CONNECTIONSTRING}
+      DBNAME: ${DBNAME}
+      DBUSER: ${DBUSER}
+      DBPASS: ${DBPASS}
+      WEBSITE_HOSTNAME: ${WEBSITE_HOSTNAME}
+      HTTP_HOST: ${HTTP_HOST}
+      CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+      REDIS_SSL: ${REDIS_SSL}
+      DB_SSLMODE: ${DB_SSLMODE}
+volumes:
+  postgres_data:
+  static_volume:
